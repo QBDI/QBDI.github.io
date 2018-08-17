@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QBDI - QuarkslaB Dynamic binary Instrumentation</title>
+    <meta name="description" content="QuarkslaB Dynamic binary Instrumentation (QBDI) is a modular, cross-platform and cross-architecture DBI framework.">
+    <link rel="stylesheet" href="dist/quarkstrap.css">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" type="image/png" href="resources/favicon64.ico">
+  </head>
+
+  <body class="layout-default">
+
+    <header class="hero is-medium">
+      <div class="hero-head">
+        <div class="container">
+
+          <nav class="nav">
+            <div class="nav-left">
+              <a class="nav-item" href="https://quarkslab.com">
+                <img src="resources/QB-big.png" alt="QB">
+              </a>
+            </div>
+
+
+            <span id="nav-toggle" class="nav-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <div id="nav-menu" class="nav-right nav-menu">
+              <a class="nav-item" href="#introduction">Introduction</a>
+              <a class="nav-item" href="#usage">Usage</a>
+              <a class="nav-item" href="#status">Status</a>
+              <a class="nav-item" href="#download">Download</a>
+              <a class="nav-item" href="https://qbdi.readthedocs.io">Documentation</a>
+              <a class="nav-item" href="#about">About</a>
+            </div>
+          </nav>
+
+        </div>
+      </div>
+    </header>
+
+    <section class="hero is-medium has-text-centered">
+
+
+  <div class="hero-body">
+    <div class="container">
+     <!-- <h1 class="title">
+        <img src="resources/qbdi_logo.png" alt="qbdi_logo">
+      </h1> 
+Yes, we do not have a logo yet.
+	-->
+      <h3 class="title is-2">
+        <b>Q</b>uarksla<b>B</b> <b>D</b>ynamic binary <b>I</b>nstrumentation
+      </h3>
+      <br />
+    </div>
+  </div>
+</section>
+
+<hr class="is-marginless">
+
+<section class="section is-medium">
+  <div class="container">
+    <h3 class="title is-2">
+      <a id="introduction" href="#">
+        <span class="icon is-large"><i class="fa fa-angle-double-right"></i></span>
+        Introduction
+      </a>
+    </h3>
+    <br />
+    <p class="subtitle is-4"><strong>Q</strong>uarksla<strong>B</strong> <strong>D</strong>ynamic binary <strong>I</strong>nstrumentation (<strong>QBDI</strong>) is a modular, cross-platform and cross-architecture <strong>DBI framework</strong>. It aims to support Linux, macOS, Android, iOS and Windows operating systems running on x86, x86-64, ARM and AArch64 architectures.
+    </p>
+      <h4 class="subtitle is-3"><strong>Why a DBI?</strong></h4>
+      <p class="subtitle is-5">
+      Debuggers are a popular approach to analyze the execution of a binary. While those tools are convenient, they are also quite slow. This performance problem is imperceptible to human users but really takes its toll on automated tools trying to step through a complete program. The only way to get rid of the problem is to place the tool inside the binary being analyzed and this is what DBI does: injecting instrumentation code inside the binary at runtime.
+      </p>
+      <h4 class="subtitle is-3"><strong>Why QBDI?</strong></h4>
+      <p class="subtitle is-5">
+      Existing DBI framework were designed more than 15 years ago, focusing on features and platforms that made sense at the time. Mobile platform support is often unstable or missing and instrumentation features are either simplistic or buried in low-level details.
+      QBDI attempts to retain the interesting features of those frameworks while avoiding their pitfalls and bringing new designs and ideas to the table.
+      </p>
+  </div>
+</section>
+
+<hr class="is-marginless">
+
+<section class="section is-medium">
+  <div class="container">
+    <h3 class="title is-2">
+      <a id="usage" href="#">
+        <span class="icon is-large"><i class="fa fa-gear"></i></span>
+        Usage
+      </a>
+    </h3>
+    <br />
+    <p class="subtitle is-4">
+    Instrumentation tools based on <strong>QBDI</strong> are compiled as dynamic libraries, that can be loaded in target process using any injection tools or techniques.
+	<br />
+    For this purpose, a generic library allowing loader based injections, <strong>QBDIPreload</strong>, is provided (currently supporting Linux and macOS).
+	</p>
+    <p class="subtitle is-4">
+    Modularity stand for easy integration everywhere. <strong>pyQBDI</strong> brings together <strong>QBDIPreload</strong> and <strong>Python</strong>, permitting flexible and hassle-free instrumentation.
+    <strong>QBDI</strong> is also fully integrated with <strong>Frida</strong>, a reference dynamic instrumentation toolkit, allowing anybody to use their combined powers in order to create custom reverse engineering tools.
+    </p>
+    <br />
+    <div class="tile is-ancestor">
+
+            <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-primary">
+                    <div class="content">
+                        <p class="title is-3">QBDI Framework</p>
+                        <p class="title is-4">
+                        Easy to use C/C++ APIs
+<figure class="highlight"><pre><code class="language-html" data-lang="html">
+<span class="nt">QBDI::VMAction</span> printInstruction(<span class="nt">QBDI::VMInstanceRef</span> vm,
+                                <span class="nt">QBDI::GPRState*</span>     gprState,
+                                <span class="nt">QBDI::FPRState*</span>     fprState,
+                                <span class="nt">void*</span>               data) {
+    <span class="nt">const QBDI::InstAnalysis*</span> instAnalysis = vm->getInstAnalysis();
+    std::cout << std::setbase(<span class="na">16</span>) << instAnalysis->address << " "
+        << instAnalysis->disassembly << std::endl << std::setbase(<span class="na">10</span>);
+    return QBDI::VMAction::CONTINUE;
+}
+
+<span class="nt">int</span> main() {
+    <span class="nt">uint8_t</span> *fakestack = nullptr;
+    <span class="nt">QBDI::VM</span> *vm = <span class="sr">new</span> QBDI::VM();
+    <span class="nt">QBDI::GPRState</span> *state = vm->getGPRState();
+    QBDI::allocateVirtualStack(state, <span class="na">0x1000000</span>, &fakestack);
+    vm->addInstrumentedModuleFromAddr(funcPtr);
+    vm->addCodeCB(QBDI::PREINST, printInstruction, NULL);
+    <span class="nt">rword</span> retVal;
+    vm->call(&retVal, funcPtr, {<span class="na">42</span>});
+}
+</code></pre></figure>
+                        </p>
+                    </div>
+                </article>
+                <article class="tile is-child notification is-primary">
+                    <div class="content">
+                        <p class="title is-3"><strong>QBDIPreload</strong></p>
+                        <p class="title is-4">
+                        Simple yet powerful injector
+<figure class="highlight"><pre><code class="language-html" data-lang="html">
+<span class="nt">VMAction</span> printInstruction(<span class="nt">VMInstanceRef</span> vm,
+                          <span class="nt">GPRState</span>     *gprState,
+                          <span class="nt">FPRState</span>     *fprState,
+                          <span class="nt">void</span>         *data) {
+    <span class="nt">int</span> flags = QBDI_ANALYSIS_INSTRUCTION | QBDI_ANALYSIS_DISASSEMBLY;
+    <span class="nt">const InstAnalysis*</span> inst = qbdi_getInstAnalysis(vm, flags);
+    printf(<span class="sr">"0x%"</span> PRIRWORD <span class="sr">" %s\n"</span>, inst->address, inst->disassembly);
+    return QBDI_CONTINUE;
+}
+
+<span class="nt">int</span> qbdipreload_on_run(<span class="nt">VMInstanceRef</span> vm, <span class="nt">rword</span> start, <span class="nt">rword</span> stop) {
+    qbdi_addCodeCB(vm, QBDI_PREINST, printInstruction, NULL);
+    qbdi_run(vm, start, stop);
+    return QBDIPRELOAD_NO_ERROR;
+}
+</code></pre></figure>
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="tile is-parent is-vertical">
+                <article class="tile is-child notification is-primary">
+                    <div class="content">
+                        <p class="title is-3"><strong>Frida/QBDI</strong></p>
+                        <p class="title is-4">
+                        Full featured Frida bindings
+<figure class="highlight"><pre><code class="language-html" data-lang="html">
+<span class="nt">var</span> vm = <span class="sr">new</span> QBDI();
+<span class="nt">var</span> state = vm.getGPRState();
+vm.allocateVirtualStack(state, <span class="na">0x1000000</span>);
+<span class="nt">var</span> funcPtr = Module.findExportByName(null, <span class="ne">"aFunction"</span>);
+vm.addInstrumentedModuleFromAddr(funcPtr);
+<span class="nt">var</span> icbk = vm.newInstCallback(function(vm, gpr, fpr, data) {
+    <span class="nt">var</span> inst = vm.getInstAnalysis();
+    <span class="m">// Display instruction dissassembly</span>
+    fmt = <span class="sr">"0x"</span> + inst.address.toString(<span class="na">16</span>) + <span class="sr">" "</span> + inst.disassembly;
+    console.log(fmt);
+    return VMAction.CONTINUE;
+});
+vm.addCodeCB(InstPosition.PREINST, icbk);
+vm.call(funcPtr, [<span class="na">42</span>]);
+</code></pre></figure>
+                        </p>
+                    </div>
+                </article>
+                <article class="tile is-child notification is-primary">
+                    <div class="content">
+                        <p class="title is-3"><strong>pyQBDI</strong></p>
+                        <p class="title is-4">
+                        Fun and flexible Python bindings
+<figure class="highlight"><pre><code class="language-html" data-lang="html">
+<span class="nt">import</span> pyqbdi;
+
+<span class="nt">def</span> <span class="sr">printInstruction</span>(vm, gpr, fpr, data):
+    inst = vm.getInstAnalysis()
+    <span class="nt">print</span> <span class="sr">"0x%x %s"</span> % (inst.address, inst.disassembly)
+    <span class="nt">return</span> pyqbdi.CONTINUE
+
+<span class="nt">def</span> <span class="sr">pyqbdipreload_on_run</span>(vm, start, stop):
+    state = vm.getGPRState()
+    success, addr = pyqbdi.allocateVirtualStack(state, <span class="na">0x100000</span>)
+    funcPtr = ctypes.cast(aLib.aFunction, ctypes.c_void_p).value
+    vm.addInstrumentedModuleFromAddr(funcPtr)
+    vm.addCodeCB(pyqbdi.PREINST, printInstruction, <span class="w">None</span>)
+    vm.call(funcPtr, [<span class="na">42</span>])
+</code></pre></figure>
+                        </p>
+                    </div>
+                </article>
+            </div>
+
+    </div>
+</section>
+
+<hr class="is-marginless">
+
+<section class="section is-medium">
+  <div class="container">
+    <h3 class="title is-2">
+      <a id="status" href="#">
+        <span class="icon is-large"><i class="fa fa-star"></i></span>
+        Status
+      </a>
+    </h3>
+    <h4 class="subtitle is-4">Current build status</h4>
+    <br />
+    <p class="subtitle is-4">
+    <strong>x86-64</strong> support is mature (even if SIMD memory access are not yet reported).
+    <strong>ARM</strong> architecture is a work in progress but already sufficient to execute simple CLI program like <em>ls</em> or <em>cat</em>.
+    <strong>x86</strong> and <strong>AArch64</strong> are planned, but currently unsupported.
+    </p>
+    <p class="subtitle is-4">
+    A current limitation is that QBDI doesn’t handle signals, multithreading (it doesn't deal with new threads creation) and C++ exception mechanisms.
+    <br />
+    However, those system-dependent features will probably not be part of the core library (KISS), and should be integrated as a new layer (to be determined how).
+    </p>
+    <br />
+
+<table class="table is-striped is-bordered">
+<colgroup>
+<col width="10%" />
+<col width="40%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead class="thead">
+<tr>
+    <th scope="col">CPU</th>
+    <th scope="col">Operating Systems</th>
+    <th scope="col">Execution</th>
+    <th scope="col">Memory Access Information</th>
+</tr>
+</thead>
+<tbody class="highlight subtitle is-5">
+<tr>
+    <th scope="row">x86-64</th>
+    <td>Linux, macOS, Windows</td>
+    <td><span class="m">Supported</span></td>
+    <td><span class="na">Partial (only non SIMD)</span></td>
+</tr>
+<tr>
+    <th scope="row">x86</th>
+    <td>Linux, macOS, Windows</td>
+    <td><span class="sr">Unsupported</span></td>
+    <td><span class="sr">Unsupported</span></td>
+</tr>
+<tr>
+    <th scope="row">ARM</th>
+    <td>Linux, Android, iOS</td>
+    <td><span class="na">Partial</span></td>
+    <td><span class="sr">Unsupported</span></td>
+</tr>
+<tr>
+    <th scope="row">AArch64</th>
+    <td>Linux, Android</td>
+    <td><span class="sr">Unsupported</span></td>
+    <td><span class="sr">Unsupported</span></td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+</section>
+
+<hr class="is-marginless">
+
+<section class="section is-medium">
+  <div class="container">
+    <h3 class="title is-2">
+      <a id="download" href="#">
+        <span class="icon is-large">
+          <i class="fa fa-superpowers"></i>
+        </span>
+        Download
+      </a>
+    </h3>
+    <h4 class="subtitle is-4">Get prebuilt packages</h4>
+
+    <div id="grid" class="columns">
+      <div class="column">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="resources/linux-android.jpg" alt="">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-5">Linux version (64-bits)</p>
+                <p class="subtitle is-6">0.6.1</p>
+              </div>
+            </div>
+
+            <div class="content">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.6.1/QBDI-0.6.1-archlinux20171021-X86_64.pkg.tar.xz" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Arch Linux
+              </a>
+              
+              <br />
+              <br />
+              
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.6.1/QBDI-0.6.1-debian9-X86_64.deb" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Debian 9
+              </a>
+              
+              <br />
+              <br />
+              
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.6.1/QBDI-0.6.1-ubuntu16.04-X86_64.deb" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Ubuntu 16.04
+              </a>
+              
+              <br />
+              <br />
+              
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.6.1/QBDI-0.6.1-ubuntu17.10-X86_64.deb" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Ubuntu 17.10
+              </a>
+
+              <br />
+              <br />
+              
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.6.1/QBDI-0.6.1-linux-ARM.tar.gz" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Linux ARM
+              </a>
+              (developer preview)
+            </div>
+          </div>
+
+          <!-- Android -->
+
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-5">Android</p>
+              </div>
+            </div>
+
+            <div class="content">
+             
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.6.1/QBDI-0.6.1-android-ARM.tar.gz" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Android
+              </a>
+              (developer preview)
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="resources/windows.png" alt="">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-5">Windows version</p>
+                <p class="subtitle is-6">0.6.1</p>
+              </div>
+            </div>
+
+            <div class="content">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.6.1/QBDI-0.6.1-win-X86_64.exe" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Windows 
+              </a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="column">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="resources/osx.png" alt="">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-5">macOS version (64-bits)</p>
+                <p class="subtitle is-6">0.6.1</p>
+              </div>
+            </div>
+
+            <div class="content">
+             <a href="https://github.com/QBDI/QBDI/releases/download/v0.6.1/QBDI-0.6.1-macOS-X86_64.pkg" class="level-item">
+               <span class="icon is-small"><i class="fa fa-download"></i></span>
+               macOS
+             </a>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="resources/github.png" alt="">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-5">Source</p>
+                <p class="subtitle is-6">master</p>
+              </div>
+            </div>
+
+            <div class="content">
+              <a href="https://github.com/QBDI/QBDI" class="level-item">
+                <span class="icon is-small"><i class="fa fa-code-fork"></i></span>
+               Sources
+              </a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <br/>
+    <p class="subtitle is-4">All <a href="https://github.com/QBDI/QBDI/releases">releases</a> are signed using QBDI developers GPG key: <a href="/qbdi.asc">2763 2215 DED8 D717 AD08  477D 874D 3F16 4D45 2193</a></p>
+  </div>
+</section>
+
+<hr class="is-marginless">
+
+<section class="section is-medium">
+  <div class="container">
+    <h3 class="title is-2">
+      <a id="about" href="#">
+        <span class="icon is-large"><i class="fa fa-info"></i></span>
+       About
+      </a>
+    </h3>
+    <br />
+
+    <p class="subtitle is-4">QBDI is currently developed and sponsored by <a href="https://quarkslab.com/">Quarkslab</a> under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</p>
+    <br />
+    <p class="subtitle is-4">This project is an ongoing experimentation, and it smells like fresh paint sometimes.<br />Feel free to open <a href="https://github.com/QBDI/QBDI/issues/">issues</a>, and join us on <strong>freenode</strong> (#qbdi) to share ideas.</p>
+  </div>
+</section>
+
+
+
+
+<footer class="footer">
+  <div class="container">
+
+    <div class="level">
+      <div class="level-left">
+        <figure class="level-item">
+          <p class="image is-64x64">
+            <img src="resources/QB-small.png">
+          </p>
+        </figure>
+        <div class="level-item">
+          <div class="content">
+            <p>
+              <strong>Quarkslab</strong><br>
+              qbdi [at] quarkslab [dot] com
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+    <script src ="/dist/toggle.js">
+    </script>
+
+  </body>
+
+</html>
+
+
+
