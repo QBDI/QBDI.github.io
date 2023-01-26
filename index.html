@@ -238,7 +238,7 @@ vm.call(funcPtr, [<span class="na">42</span>]);
     <br />
     <p class="subtitle is-4">
     <strong>x86-64</strong> and <strong>x86</strong> supports are mature.
-    <strong>ARM/Thumb/Thumb-2</strong> and <strong>AArch64</strong> are under testing and planned for a future release.
+    <strong>ARM/Thumb/Thumb-2</strong> and <strong>AArch64</strong> supports are new and may be unstable.
     </p>
     <p class="subtitle is-4">
     A current limitation is that QBDI doesn’t handle signals, multithreading (it doesn't deal with new threads creation) and C++ exception mechanisms.
@@ -265,27 +265,27 @@ vm.call(funcPtr, [<span class="na">42</span>]);
 <tbody class="highlight subtitle is-5">
 <tr>
     <th scope="row">x86-64</th>
-    <td>Linux, macOS, Windows</td>
+    <td>Android, Linux, macOS, Windows</td>
     <td><span class="m">Supported</span></td>
     <td><span class="m">Supported</span></td>
 </tr>
 <tr>
     <th scope="row">x86</th>
-    <td>Linux, macOS, Windows</td>
+    <td>Android, Linux, Windows</td>
     <td><span class="m">Supported</span></td>
     <td><span class="m">Supported</span></td>
 </tr>
 <tr>
     <th scope="row">ARM</th>
-    <td>Linux, Android, iOS</td>
-    <td><span class="k">Under testing</span><span class="na"> Parial support until QBDI 0.6.2</span></td>
-    <td><span class="k">Under testing</span></td>
+    <td>Android, Linux</td>
+    <td><span class="m">Supported</span></td>
+    <td><span class="m">Supported</span></td>
 </tr>
 <tr>
     <th scope="row">AArch64</th>
-    <td>Linux, Android</td>
-    <td><span class="k">Under testing</span></td>
-    <td><span class="k">Under testing</span></td>
+    <td>Android, Linux, macOS</td>
+    <td><span class="m">Supported</span></td>
+    <td><span class="m">Supported</span></td>
 </tr>
 </tbody>
 </table>
@@ -297,12 +297,20 @@ vm.call(funcPtr, [<span class="na">42</span>]);
         <img style="margin-bottom:-4px" src="https://readthedocs.org/projects/qbdi/badge/?version=stable">
       </a>
       &nbsp;
-      <a href="https://ci.appveyor.com/project/QBDI/qbdi/branch/master">
-        <img style="margin-bottom:-4px" src="https://ci.appveyor.com/api/projects/status/s2qvpu8k8yiau647/branch/master?svg=true">
+      <a href="https://github.com/QBDI/QBDI/actions/workflows/android.yml?query=branch%3Amaster">
+        <img style="margin-bottom:-4px" src="https://github.com/QBDI/QBDI/actions/workflows/android.yml/badge.svg?branch=master">
       </a>
       &nbsp;
-      <a href="https://github.com/QBDI/QBDI/actions?query=workflow%3A%22Tests+and+Package+Linux%22+branch%3Amaster">
-        <img style="margin-bottom:-4px" src="https://github.com/QBDI/QBDI/workflows/Tests%20and%20Package%20Linux/badge.svg?branch=master">
+      <a href="https://github.com/QBDI/QBDI/actions/workflows/linux.yml?query=branch%3Amaster">
+        <img style="margin-bottom:-4px" src="https://github.com/QBDI/QBDI/actions/workflows/linux.yml/badge.svg?branch=master">
+      </a>
+      &nbsp;
+      <a href="https://github.com/QBDI/QBDI/actions/workflows/osx.yml?query=branch%3Amaster">
+        <img style="margin-bottom:-4px" src="https://github.com/QBDI/QBDI/actions/workflows/osx.yml/badge.svg?branch=master">
+      </a>
+      &nbsp;
+      <a href="https://github.com/QBDI/QBDI/actions/workflows/windows.yml?query=branch%3Amaster">
+        <img style="margin-bottom:-4px" src="https://github.com/QBDI/QBDI/actions/workflows/windows.yml/badge.svg?branch=master">
       </a>
       &nbsp;
       <a href="https://github.com/QBDI/QBDI/releases">
@@ -323,12 +331,20 @@ vm.call(funcPtr, [<span class="na">42</span>]);
         <img style="margin-bottom:-4px" src="https://readthedocs.org/projects/qbdi/badge/?version=dev-next">
       </a>
       &nbsp;
-      <a href="https://ci.appveyor.com/project/QBDI/qbdi/branch/dev-next">
-        <img style="margin-bottom:-4px" src="https://ci.appveyor.com/api/projects/status/s2qvpu8k8yiau647/branch/dev-next?svg=true">
+      <a href="https://github.com/QBDI/QBDI/actions/workflows/android.yml?query=branch%3Adev-next">
+        <img style="margin-bottom:-4px" src="https://github.com/QBDI/QBDI/actions/workflows/android.yml/badge.svg?branch=dev-next">
       </a>
       &nbsp;
-      <a href="https://github.com/QBDI/QBDI/actions?query=workflow%3A%22Tests+and+Package+Linux%22+branch%3Adev-next">
-        <img style="margin-bottom:-4px" src="https://github.com/QBDI/QBDI/workflows/Tests%20and%20Package%20Linux/badge.svg?branch=dev-next">
+      <a href="https://github.com/QBDI/QBDI/actions/workflows/linux.yml?query=branch%3Adev-next">
+        <img style="margin-bottom:-4px" src="https://github.com/QBDI/QBDI/actions/workflows/linux.yml/badge.svg?branch=dev-next">
+      </a>
+      &nbsp;
+      <a href="https://github.com/QBDI/QBDI/actions/workflows/osx.yml?query=branch%3Adev-next">
+        <img style="margin-bottom:-4px" src="https://github.com/QBDI/QBDI/actions/workflows/osx.yml/badge.svg?branch=dev-next">
+      </a>
+      &nbsp;
+      <a href="https://github.com/QBDI/QBDI/actions/workflows/windows.yml?query=branch%3Adev-next">
+        <img style="margin-bottom:-4px" src="https://github.com/QBDI/QBDI/actions/workflows/windows.yml/badge.svg?branch=dev-next">
       </a>
     </p>
     <p>
@@ -362,12 +378,12 @@ vm.call(funcPtr, [<span class="na">42</span>]);
             <div class="media">
               <div class="media-content">
                 <p class="title is-5">Linux</p>
-                <p class="subtitle is-6">0.9.0</p>
+                <p class="subtitle is-6">0.10.0</p>
               </div>
             </div>
 
             <div class="content">
-              <a href="https://github.com/QBDI/QBDI/releases/download/v0.9.0/QBDI-0.9.0-archlinux2022-03-31-X86.pkg.tar.zst" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-archlinux2023-01-26-X86.pkg.tar.zst" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
                 Arch Linux (x86)
               </a>
@@ -375,7 +391,7 @@ vm.call(funcPtr, [<span class="na">42</span>]);
               <br />
               <br />
 
-              <a href="https://github.com/QBDI/QBDI/releases/download/v0.9.0/QBDI-0.9.0-archlinux2022-03-31-X86_64.pkg.tar.zst" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-archlinux2023-01-26-X86_64.pkg.tar.zst" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
                 Arch Linux (x86-64)
               </a>
@@ -383,7 +399,23 @@ vm.call(funcPtr, [<span class="na">42</span>]);
               <br />
               <br />
 
-              <a href="https://github.com/QBDI/QBDI/releases/download/v0.9.0/QBDI-0.9.0-debian11-X86.deb" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-debian11-AARCH64.deb" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Debian 11 (aarch64)
+              </a>
+
+              <br />
+              <br />
+
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-debian11-ARM.deb" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Debian 11 (armv7)
+              </a>
+
+              <br />
+              <br />
+
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-debian11-X86.deb" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
                 Debian 11 (x86)
               </a>
@@ -391,7 +423,7 @@ vm.call(funcPtr, [<span class="na">42</span>]);
               <br />
               <br />
 
-              <a href="https://github.com/QBDI/QBDI/releases/download/v0.9.0/QBDI-0.9.0-debian11-X86_64.deb" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-debian11-X86_64.deb" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
                 Debian 11 (x86-64)
               </a>
@@ -399,7 +431,7 @@ vm.call(funcPtr, [<span class="na">42</span>]);
               <br />
               <br />
 
-              <a href="https://github.com/QBDI/QBDI/releases/download/v0.9.0/QBDI-0.9.0-ubuntu18.04-X86.deb" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-ubuntu18.04-X86.deb" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
                 Ubuntu 18.04 (x86)
               </a>
@@ -407,17 +439,49 @@ vm.call(funcPtr, [<span class="na">42</span>]);
               <br />
               <br />
 
-              <a href="https://github.com/QBDI/QBDI/releases/download/v0.9.0/QBDI-0.9.0-ubuntu20.04-X86_64.deb" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-ubuntu22.04-AARCH64.deb" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
-                Ubuntu 20.04 (x86-64)
+                Ubuntu 22.04 (aarch64)
               </a>
 
               <br />
               <br />
 
-              <a href="https://github.com/QBDI/QBDI/releases/download/v0.9.0/QBDI-0.9.0-ubuntu21.10-X86_64.deb" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-ubuntu22.04-ARM.deb" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
-                Ubuntu 21.10 (x86-64)
+                Ubuntu 22.04 (armv7)
+              </a>
+
+              <br />
+              <br />
+
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-ubuntu22.04-X86_64.deb" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Ubuntu 22.04 (x86-64)
+              </a>
+
+              <br />
+              <br />
+
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-ubuntu22.10-AARCH64.deb" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Ubuntu 22.10 (aarch64)
+              </a>
+
+              <br />
+              <br />
+
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-ubuntu22.10-ARM.deb" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Ubuntu 22.10 (armv7)
+              </a>
+
+              <br />
+              <br />
+
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-ubuntu22.10-X86_64.deb" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Ubuntu 22.10 (x86-64)
               </a>
             </div>
             <div class="media">
@@ -428,7 +492,7 @@ vm.call(funcPtr, [<span class="na">42</span>]);
 
             <div class="content">
 
-              <a href="https://github.com/QBDI/QBDI/actions?query=workflow%3A%22Tests+and+Package+Linux%22+branch%3Adev-next" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/actions/workflows/linux.yml?query=branch%3Adev-next" class="level-item">
                 <span class="icon is-small"><i class="fa fa-link"></i></span>
                 Linux CI
               </a>
@@ -442,13 +506,29 @@ vm.call(funcPtr, [<span class="na">42</span>]);
             <div class="media">
               <div class="media-content">
                 <p class="title is-5">Android</p>
-                <p class="subtitle is-6">0.9.0</p>
+                <p class="subtitle is-6">0.10.0</p>
               </div>
             </div>
 
             <div class="content">
 
-              <a href="https://github.com/QBDI/QBDI/releases/download/v0.9.0/QBDI-0.9.0-android-X86.tar.gz" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-android-AARCH64.tar.gz" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Android (aarch64)
+              </a>
+
+              <br />
+              <br />
+
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-android-ARM.tar.gz" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                Android (arm)
+              </a>
+
+              <br />
+              <br />
+
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-android-X86.tar.gz" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
                 Android (x86)
               </a>
@@ -456,7 +536,7 @@ vm.call(funcPtr, [<span class="na">42</span>]);
               <br />
               <br />
 
-              <a href="https://github.com/QBDI/QBDI/releases/download/v0.9.0/QBDI-0.9.0-android-X86_64.tar.gz" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-android-X86_64.tar.gz" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
                 Android (x86-64)
               </a>
@@ -470,7 +550,7 @@ vm.call(funcPtr, [<span class="na">42</span>]);
 
             <div class="content">
 
-              <a href="https://github.com/QBDI/QBDI/actions?query=workflow%3A%22Package+Android%22+branch%3Adev-next" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/actions/workflows/android.yml?query=branch%3Adev-next" class="level-item">
                 <span class="icon is-small"><i class="fa fa-link"></i></span>
                 Android CI
               </a>
@@ -492,19 +572,20 @@ vm.call(funcPtr, [<span class="na">42</span>]);
             <div class="media">
               <div class="media-content">
                 <p class="title is-5">Windows</p>
-                <p class="subtitle is-6">0.9.0</p>
+                <p class="subtitle is-6">0.10.0</p>
               </div>
             </div>
 
             <div class="content">
-              <a href="https://github.com/QBDI/QBDI/releases/download/v0.9.0/QBDI-0.9.0-windows-X86.exe" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-windows-X86.exe" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
                 Windows (x86)
               </a>
+
               <br />
               <br />
 
-              <a href="https://github.com/QBDI/QBDI/releases/download/v0.9.0/QBDI-0.9.0-windows-X86_64.exe" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-windows-X86_64.exe" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
                 Windows (x86-64)
               </a>
@@ -518,7 +599,7 @@ vm.call(funcPtr, [<span class="na">42</span>]);
 
             <div class="content">
 
-              <a href="https://ci.appveyor.com/project/QBDI/qbdi/branch/dev-next" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/actions/workflows/windows.yml?query=branch%3Adev-next" class="level-item">
                 <span class="icon is-small"><i class="fa fa-link"></i></span>
                 Windows CI
               </a>
@@ -538,7 +619,7 @@ vm.call(funcPtr, [<span class="na">42</span>]);
             <div class="media">
               <div class="media-content">
                 <p class="title is-5">Docker images</p>
-                <p class="subtitle is-6">0.9.0</p>
+                <p class="subtitle is-6">0.10.0</p>
               </div>
             </div>
 
@@ -566,13 +647,21 @@ vm.call(funcPtr, [<span class="na">42</span>]);
             <div class="media">
               <div class="media-content">
                 <p class="title is-5">OSX version</p>
-                <p class="subtitle is-6">0.9.0</p>
+                <p class="subtitle is-6">0.10.0</p>
               </div>
             </div>
 
             <div class="content">
 
-              <a href="https://github.com/QBDI/QBDI/releases/download/v0.9.0/QBDI-0.9.0-osx-X86_64.pkg" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-osx-AARCH64.pkg" class="level-item">
+                <span class="icon is-small"><i class="fa fa-download"></i></span>
+                OSX (aarch64)
+              </a>
+
+              <br />
+              <br />
+
+              <a href="https://github.com/QBDI/QBDI/releases/download/v0.10.0/QBDI-0.10.0-osx-X86_64.pkg" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
                 OSX (x86-64)
               </a>
@@ -585,7 +674,7 @@ vm.call(funcPtr, [<span class="na">42</span>]);
             </div>
 
             <div class="content">
-              <a href="https://github.com/QBDI/QBDI/actions?query=workflow%3A%22Tests+and+Package+OSX%22+branch%3Adev-next" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/actions/workflows/osx.yml?query=branch%3Adev-next" class="level-item">
                 <span class="icon is-small"><i class="fa fa-download"></i></span>
                 OSX CI
               </a>
@@ -605,7 +694,7 @@ vm.call(funcPtr, [<span class="na">42</span>]);
             <div class="media">
               <div class="media-content">
                 <p class="title is-5">PyQBDI</p>
-                <p class="subtitle is-6">0.9.0</p>
+                <p class="subtitle is-6">0.10.0</p>
               </div>
             </div>
 
@@ -625,21 +714,21 @@ vm.call(funcPtr, [<span class="na">42</span>]);
 
             <div class="content">
 
-              <a href="https://ci.appveyor.com/project/QBDI/qbdi/branch/dev-next" class="level-item">
-                <span class="icon is-small"><i class="fa fa-link"></i></span>
-                Windows CI
-              </a>
-              <br />
-              <br />
-              <a href="https://github.com/QBDI/QBDI/actions?query=workflow%3A%22PyQBDI+Linux+package%22+branch%3Adev-next" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/actions/workflows/python_linux.yml?query=branch%3Adev-next" class="level-item">
                 <span class="icon is-small"><i class="fa fa-link"></i></span>
                 PyQBDI Linux CI
               </a>
               <br />
               <br />
-              <a href="https://github.com/QBDI/QBDI/actions?query=workflow%3A%22PyQBDI+OSX+package%22+branch%3Adev-next" class="level-item">
+              <a href="https://github.com/QBDI/QBDI/actions/workflows/python_osx.yml?query=branch%3Adev-next" class="level-item">
                 <span class="icon is-small"><i class="fa fa-link"></i></span>
                 PyQBDI OSX CI
+              </a>
+              <br />
+              <br />
+              <a href="https://github.com/QBDI/QBDI/actions/workflows/python_windows.yml?query=branch%3Adev-next" class="level-item">
+                <span class="icon is-small"><i class="fa fa-link"></i></span>
+                PyQBDI Windows CI
               </a>
 
             </div>
@@ -707,7 +796,7 @@ vm.call(funcPtr, [<span class="na">42</span>]);
 
     <p class="subtitle is-4">QBDI is currently developed and sponsored by <a href="https://quarkslab.com/">Quarkslab</a> under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license.</p>
     <br />
-    <p class="subtitle is-4">This project is an ongoing experimentation, and it smells like fresh paint sometimes.<br />Feel free to open <a href="https://github.com/QBDI/QBDI/issues/">issues</a>, and join us on <strong>freenode</strong> (#qbdi) to share ideas.</p>
+    <p class="subtitle is-4">This project is an ongoing experimentation, and it smells like fresh paint sometimes.<br />Feel free to open <a href="https://github.com/QBDI/QBDI/issues/">issues</a>.</p>
   </div>
 </section>
 
